@@ -21,7 +21,14 @@ SOURCES += \
     ../item.cpp \
     ../Parser.cpp \
     ../Room.cpp \
-    ../ZorkUL.cpp
+    ../ZorkUL.cpp \
+    src/Character.cpp \
+    src/Command.cpp \
+    src/CommandWords.cpp \
+    src/item.cpp \
+    src/Parser.cpp \
+    src/Room.cpp \
+    src/ZorkUL.cpp
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -35,4 +42,11 @@ HEADERS += \
     ../item.h \
     ../Parser.h \
     ../Room.h \
-    ../ZorkUL.h
+    ../ZorkUL.h \
+    src/Character.h \
+    src/Command.h \
+    src/CommandWords.h \
+    src/item.h \
+    src/Parser.h \
+    src/Room.h \
+    src/ZorkUL.h
