@@ -1,4 +1,4 @@
-/*#ifndef CHARACTER_H_
+#ifndef CHARACTER_H_
 #define CHARACTER_H_
 #include "ZorkUL.h"
 
@@ -11,7 +11,8 @@ using std::vector;
 class Character {
 private:
 	string description;
-	 vector < string > itemsInCharacter;
+    vector < string > itemsInCharacter;
+    string name;
 public:
 	void addItems(string Item);
 
@@ -19,7 +20,7 @@ public:
 
 
 public:
-	Character(string description);
+    Character(string name, string description, );
 	string shortDescription();
 	string longDescription();
 

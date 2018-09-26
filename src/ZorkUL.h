@@ -1,3 +1,5 @@
+
+/*
 #ifndef ZORKUL_H_
 #define ZORKUL_H_
 
@@ -7,12 +9,15 @@
 #include "item.h"
 #include <iostream>
 #include <string>
+#include <QApplication>
+
 using namespace std;
 
 class ZorkUL {
 private:
 	Parser parser;
 	Room *currentRoom;
+    QApplication *app;
 	void createRooms();
 	void printWelcome();
 	bool processCommand(Command command);
@@ -22,9 +27,11 @@ private:
     void displayItems();
 
 public:
-	ZorkUL();
-	void play();
+    ZorkUL(QApplication *app);
+    void run();
 	string go(string direction);
 };
 
-#endif /*ZORKUL_H_*/
+#endif /*ZORKUL_H_
+*/
+

@@ -1,3 +1,5 @@
+
+/*
 #include "Room.h"
 #include "Command.h"
 
@@ -88,3 +90,4 @@ int Room::isItemInRoom(string inString)
     return -1;
 }
 
+*/

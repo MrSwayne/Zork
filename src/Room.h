@@ -1,3 +1,5 @@
+
+/*
 #ifndef ROOM_H_
 #define ROOM_H_
 
@@ -31,3 +33,4 @@ public:
 };
 
 #endif
+*/

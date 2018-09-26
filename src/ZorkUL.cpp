@@ -1,27 +1,24 @@
+
+/*
 #include <iostream>
+
 
 using namespace std;
 #include "ZorkUL.h"
 
-int main(int argc, char** argv) {
-	ZorkUL temp;
-	temp.play();
-	return 0;
-}
-
-ZorkUL::ZorkUL() {
-	createRooms();
+ZorkUL::ZorkUL(QApplication *app) {
+    this->app = app;
 }
 
 void ZorkUL::createRooms()  {
 	Room *a, *b, *c, *d, *e, *f, *g, *h, *i;
 
     a = new Room("Forest");
-        a->addItem(new Item("x", 1, 11));
-        a->addItem(new Item("y", 2, 22));
+        //a->addItem(new Item("x", 1, 11));
+        //a->addItem(new Item("y", 2, 22));
 	b = new Room("b");
-        b->addItem(new Item("xx", 3, 33));
-        b->addItem(new Item("yy", 4, 44));
+        //b->addItem(new Item("xx", 3, 33));
+        //b->addItem(new Item("yy", 4, 44));
 	c = new Room("c");
 	d = new Room("d");
     e = new Room("e");
@@ -46,8 +43,13 @@ void ZorkUL::createRooms()  {
 
 /**
  *  Main play routine.  Loops until end of play.
- */
-void ZorkUL::play() {
+
+void ZorkUL::run() {
+
+
+
+
+    createRooms();
 	printWelcome();
 
 	// Enter the main command loop.  Here we repeatedly read commands and
@@ -78,7 +80,7 @@ void ZorkUL::printWelcome() {
  * Given a command, process (that is: execute) the command.
  * If this command ends the ZorkUL game, true is returned, otherwise false is
  * returned.
- */
+
 bool ZorkUL::processCommand(Command command) {
 	if (command.isUnknown()) {
 		cout << "invalid input"<< endl;
@@ -137,16 +139,16 @@ bool ZorkUL::processCommand(Command command) {
             itemsInRoom.push_Back;
         }
     }
-*/
+
     else if (commandWord.compare("quit") == 0) {
 		if (command.hasSecondWord())
 			cout << "overdefined input"<< endl;
 		else
-			return true; /**signal to quit*/
+            return true; //signal to quit
 	}
 	return false;
 }
-/** COMMANDS **/
+
 void ZorkUL::printHelp() {
 	cout << "valid inputs are; " << endl;
 	parser.showCommands();
@@ -185,3 +187,4 @@ string ZorkUL::go(string direction) {
 		return currentRoom->longDescription();
 	}
 }
+*/

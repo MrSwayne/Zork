@@ -1,30 +1,15 @@
-#ifndef ITEM_H_
-#define ITEM_H_
+#ifndef ITEM_H
+#define ITEM_H
 
-#include <map>
-#include <string>
-#include <iostream>
-using namespace std;
+#include "sprite.h"
 
-class Item {
-private:
-	string description;
-	string longDescription;
-	int weightGrams;
-	float value;
-	bool weaponCheck;
-
+class Item : public Sprite {
 public:
-    Item (string description, int inWeight, float inValue);
-    Item (string description);
-	string getShortDescription();
-    string getLongDescription();
-	int getWeight();
-	void setWeight(int weightGrams);
-	float getValue();
-	void setValue(float value);
-	int getWeaponCheck();
-	void setWeaponCheck(int weaponCheck);
+    Item(QString path, QString name, QString desc, int weight, int spawnX, int spawnY);
+    int getWeight();
+private:
+    int weight;
+    QString name;
 };
 
-#endif /*ITEM_H_*/
+#endif // ITEM_H
