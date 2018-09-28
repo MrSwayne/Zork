@@ -1,0 +1,18 @@
+/*TODO
+
+-> Pathfinding algorithm for sprites
+-> animations from spritesheets (partially implemented)
+-> randomly generated rooms
+-> ability to examine all objects etc
+-> AI
+-> art
+-> leaderboard system
+-> settings
+-> score + health system
+-> combat system
+-> inventory (partially implemented)
+ 
+
+
+
+*/
