@@ -10,18 +10,18 @@ class Person : public Sprite {
 public:
     Person(QString path, QString name,QString desc,int spawnX, int spawnY);
     void setDirection(std::string dir);
-    void move(QPoint p);
+    void move(QPointF p);
 private:
+    QImage *spriteSheet;
+    std::unordered_map<std::string, QPixmap> pixmaps;
+protected:
+    QString name;
     enum eDirection {STOP = 0, NORTH, EAST, SOUTH, WEST};
     eDirection dir;
     int xVel;
     int yVel;
-    QString name;
-    QImage *spriteSheet;
-    std::unordered_map<std::string, QPixmap> pixmaps;
-    Inventory *inventory = nullptr;
     int health;
-
+    Inventory *inventory = nullptr;
 };
 
 #endif // PERSON_H

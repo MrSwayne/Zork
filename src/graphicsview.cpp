@@ -3,12 +3,14 @@
 #include <iostream>
 #include <QMouseEvent>
 
+
+
+
 GraphicsView::GraphicsView(QWidget *parent, Player *player, QGraphicsScene *scene) : QGraphicsView(parent) {
     this->scene = scene;
     this->setScene(scene);
     this->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     this->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-
 
     if(player != nullptr) {
         this->player = player;
@@ -17,10 +19,27 @@ GraphicsView::GraphicsView(QWidget *parent, Player *player, QGraphicsScene *scen
 }
 
 
+
+
+void GraphicsView::keyPressEvent(QKeyEvent *event) {
+    if (event->key() == Qt::Key_Escape) {
+    }
+
+    this->player->keyPress(event);
+}
+
+void GraphicsView::keyReleaseEvent(QKeyEvent *event) {
+    this->player->keyRelease(event);
+}
+
+
 void GraphicsView::mousePressEvent(QMouseEvent *click) {
+    /*
     std::cout << "click" << std::endl;
-    QPoint p = click->pos();
-    player->move(p);
+    QPoint origin = this->mapFromGlobal(QCursor::pos());
+    QPointF relativeOrigin = this->mapToScene(origin);
+    player->move(relativeOrigin);
+    */
 }
 
 void GraphicsView::mouseMoveEvent(QMouseEvent *event) {

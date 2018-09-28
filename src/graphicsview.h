@@ -17,6 +17,8 @@ private:
 public slots:
     void mousePressEvent(QMouseEvent *click);
     void mouseMoveEvent(QMouseEvent *event);
+    void keyPressEvent(QKeyEvent *event);
+    void keyReleaseEvent(QKeyEvent *event);
 };
 
 #endif // GRAPHICSVIEW_H

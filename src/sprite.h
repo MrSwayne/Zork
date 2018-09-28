@@ -9,6 +9,8 @@ public:
     void setPath(QString path);
     void spawn();
     void draw();
+    int getX();
+    int getY();
 
 private:
     QString desc;

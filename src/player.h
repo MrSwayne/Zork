@@ -10,6 +10,8 @@ class Player : public Person {
 public:
     Player(QString path, QString name, QString desc, int spawnX, int spawnY);
     void addScore(int n);
+    void keyRelease(QKeyEvent *event);
+    void keyPress(QKeyEvent *event);
 
 private:
     int score;

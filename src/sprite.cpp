@@ -9,6 +9,14 @@ Sprite::Sprite(QString path, QString desc, int spawnX, int spawnY) {
     this->y = spawnY;
 }
 
+int Sprite::getX() {
+    return x;
+}
+
+int Sprite::getY() {
+    return y;
+}
+
 void Sprite::spawn() {
 
 }

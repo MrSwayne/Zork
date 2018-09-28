@@ -9,3 +9,38 @@ Player::Player(QString path, QString name, QString desc, int spawnX, int spawnY)
 void Player::addScore(int n) {
     score += n;
 }
+
+void Player::keyRelease(QKeyEvent *event) {
+    event->key();
+
+    std::cout << "release " << event->key() << std::endl;
+
+    if (event->key() == Qt::Key_W) {
+        xVel = 1;
+    }
+    if (event->key() == Qt::Key_A){
+    }
+    if (event->key() == Qt::Key_D) {
+    }
+    if (event->key() == Qt::Key_S) {
+    }
+}
+
+void Player::keyPress(QKeyEvent *event) {
+    event->key();
+
+    std::cout << "press" << event->key() << std::endl;
+
+    /*
+    if () {
+    }
+    if (){
+    }
+    if () {
+    }
+    if () ) {
+
+    }
+    */
+
+}

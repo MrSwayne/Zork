@@ -10,6 +10,7 @@ Person::Person(QString path, QString name, QString desc, int spawnX, int spawnY)
     spriteSheet = new QImage(path);
     QPixmap map = QPixmap::fromImage(spriteSheet->copy(88,56,88,56));
 
+
     this->pixmaps["STOP"] = map;
     this->setPixmap(map);
 
@@ -17,8 +18,13 @@ Person::Person(QString path, QString name, QString desc, int spawnX, int spawnY)
 }
 
 
-void Person::move(QPoint p) {
+#include <iostream>
+
+void Person::move(QPointF p) {
+    std::cout << p.x() << " " << p.y() << std::endl;
     this->setPos(p);
+
+    std::cout << this->getX() << " " << this->getY() << std::endl;
 }
 
 void Person::setDirection(std::string str) {

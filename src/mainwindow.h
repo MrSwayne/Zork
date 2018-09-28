@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QtWidgets>
 #include <QMediaPlayer>
+#include "player.h"
 
 namespace Ui {
 class MainWindow;
@@ -14,6 +15,8 @@ class MainWindow : public QMainWindow {
 
 public:
     explicit MainWindow(QWidget *parent = nullptr);
+    int getHeight();
+    int getWidth();
     ~MainWindow();
 
 private slots:
@@ -25,6 +28,7 @@ private:
     QMediaPlayer *musicPlayer = nullptr;
     QWidget *container = nullptr;
     QGridLayout *layout = nullptr;
+    Player *player = nullptr;
     int HEIGHT;
     int WIDTH;
     Ui::MainWindow *ui;
