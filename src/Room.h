@@ -1,5 +1,5 @@
 
-/*
+
 #ifndef ROOM_H_
 #define ROOM_H_
 
@@ -7,10 +7,12 @@
 #include <string>
 #include <vector>
 #include "item.h"
+#include "QGraphicsScene"
+
 using namespace std;
 using std::vector;
 
-class Room {
+class Room : public QGraphicsScene {
 
 private:
 	string description;
@@ -21,16 +23,18 @@ private:
 
 public:
     int numberOfItems();
-	Room(string description);
+    Room(string description, int WIDTH, int HEIGHT);
 	void setExits(Room *north, Room *east, Room *south, Room *west);
 	string shortDescription();
 	string longDescription();
 	Room* nextRoom(string direction);
     void addItem(Item *inItem);
     string displayItem();
+    int WIDTH;
+    int HEIGHT;
     int isItemInRoom(string inString);
     void removeItemFromRoom(int location);
 };
 
 #endif
-*/
+

@@ -96,6 +96,8 @@ void MainWindow::loadGame() {
 
     container = new QWidget();
     Zork *game = new Zork(this, container);
+    game->run();
+
     setCentralWidget(container);
 }
 

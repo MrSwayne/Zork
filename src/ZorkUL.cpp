@@ -41,7 +41,7 @@ void ZorkUL::createRooms()  {
         currentRoom = a;
 }
 
-/**
+
  *  Main play routine.  Loops until end of play.
 
 void ZorkUL::run() {
@@ -76,7 +76,7 @@ void ZorkUL::printWelcome() {
 	cout << currentRoom->longDescription() << endl;
 }
 
-/**
+
  * Given a command, process (that is: execute) the command.
  * If this command ends the ZorkUL game, true is returned, otherwise false is
  * returned.
@@ -128,7 +128,7 @@ bool ZorkUL::processCommand(Command command) {
     {
 
     }
-    /*
+
     {
     if (!command.hasSecondWord()) {
 		cout << "incomplete input"<< endl;

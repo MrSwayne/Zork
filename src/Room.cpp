@@ -1,11 +1,13 @@
 
-/*
+
 #include "Room.h"
 #include "Command.h"
 
 
-Room::Room(string description) {
+Room::Room(string description, int width, int height) {
 	this->description = description;
+    this->WIDTH = width;
+    this->HEIGHT = height;
 }
 
 void Room::setExits(Room *north, Room *east, Room *south, Room *west) {
@@ -89,5 +91,3 @@ int Room::isItemInRoom(string inString)
         }
     return -1;
 }
-
-*/
