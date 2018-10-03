@@ -15,9 +15,10 @@ Zork::Zork(MainWindow *w, QWidget *container) {
 
 void Zork::run() {
     setupRooms();
+    /*
     while(!gameOver) {
         //view->setScene
-    }
+    }*/
 }
 
 void Zork::setupRooms() {

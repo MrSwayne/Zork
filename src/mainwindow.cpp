@@ -4,7 +4,7 @@
 #include <QCloseEvent>
 #include <iostream>
 #include <QMediaPlayer>
-#include "GraphicsView.h"
+#include "graphicsview.h"
 #include "zork.h"
 #include <string.h>
 #include "player.h"

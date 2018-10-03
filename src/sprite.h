@@ -12,7 +12,7 @@ public:
     int getX();
     int getY();
 
-private:
+protected:
     QString desc;
     QPixmap *pixmap;
     int x;

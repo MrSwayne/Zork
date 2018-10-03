@@ -21,6 +21,7 @@ void Room::setExits(Room *north, Room *east, Room *south, Room *west) {
 		exits["west"] = west;
 }
 
+/*
 string Room::shortDescription() {
 	return description;
 }
@@ -60,7 +61,7 @@ string Room::displayItem() {
     else if (itemsInRoom.size() > 0) {
        int x = (0);
         for (int n = sizeItems; n > 0; n--) {
-            tempString = tempString + itemsInRoom[x].getShortDescription() + "  " ;
+            tempString = tempString + (itemsInRoom[x].getDescription().toStdString());
             x++;
             }
         }
@@ -81,7 +82,7 @@ int Room::isItemInRoom(string inString)
        int x = (0);
         for (int n = sizeItems; n > 0; n--) {
             // compare inString with short description
-            int tempFlag = inString.compare( itemsInRoom[x].getShortDescription());
+            int tempFlag = inString.compare( itemsInRoom[x].getDescription().toStdString());
             if (tempFlag == 0) {
                 itemsInRoom.erase(itemsInRoom.begin()+x);
                 return x;
@@ -91,3 +92,4 @@ int Room::isItemInRoom(string inString)
         }
     return -1;
 }
+*/
