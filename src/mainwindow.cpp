@@ -25,12 +25,17 @@ MainWindow::MainWindow(QWidget *parent) :
 
     this->setMinimumWidth(WIDTH / 2);
     this->setMinimumHeight(HEIGHT / 2);
-    //this->setMaximumWidth(WIDTH / 2);
-   // this->setMaximumHeight(HEIGHT / 2);
+    this->setMaximumWidth(WIDTH / 2);
+    this->setMaximumHeight(HEIGHT / 2);
 
-
-    this->showMaximized();
+    //    this->showMaximized();
     this->setWindowTitle(TITLE);
+
+    init();
+}
+
+void MainWindow::init() {
+
     loadMainMenu();
 }
 

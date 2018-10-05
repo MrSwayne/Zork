@@ -35,6 +35,7 @@ private:
     void closeEvent(QCloseEvent *event);
     void loadMainMenu();
     void loadGame();
+    void init();
 };
 
 #endif // MAINWINDOW_H

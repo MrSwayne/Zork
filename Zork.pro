@@ -37,7 +37,8 @@ SOURCES += \
     src/Room.cpp \
     src/sprite.cpp \
     src/ZorkUL.cpp \
-    src/zork.cpp
+    src/zork.cpp \
+    src/config.cpp
 
 HEADERS += \
     src/mainwindow.h \
@@ -53,7 +54,8 @@ HEADERS += \
     src/Room.h \
     src/sprite.h \
     src/ZorkUL.h \
-    src/zork.h
+    src/zork.h \
+    src/config.h
 
 FORMS += \
     src/mainwindow.ui
