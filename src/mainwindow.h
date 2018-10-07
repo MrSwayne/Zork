@@ -25,6 +25,7 @@ private slots:
     void handleSettingsButton();
 
 private:
+    QMediaPlaylist *playlist= nullptr;
     QMediaPlayer *musicPlayer = nullptr;
     QWidget *container = nullptr;
     QGridLayout *layout = nullptr;

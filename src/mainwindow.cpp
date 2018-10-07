@@ -52,10 +52,14 @@ void MainWindow::loadMainMenu() {
     delete musicPlayer;
 
     #if MUSIC == 1
-        musicPlayer = new QMediaPlayer;
-        musicPlayer->setMedia(QUrl::fromLocalFile(PATH + "/res/audio/main.mp3"));
-        musicPlayer->setVolume(20);
-        musicPlayer->play();
+    playlist=new QMediaPlaylist();
+    playlist->addMedia(QUrl::fromLocalFile(PATH + "/res/audio/main.mp3"));
+    playlist->setPlaybackMode(QMediaPlaylist::Loop);
+
+    musicPlayer = new QMediaPlayer;
+    musicPlayer->setPlaylist(playlist);
+    musicPlayer->setVolume(20);
+    musicPlayer->play();
     #endif
 
     std::cout << "Loading main menu" << std::endl;
