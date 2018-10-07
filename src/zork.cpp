@@ -61,8 +61,12 @@ void Zork::setup(QWidget *container) {
     WIDTH = window->getWidth();
     HEIGHT = window->getHeight();
 
+    playlist=new QMediaPlaylist();
+    playlist->addMedia(QUrl::fromLocalFile(PATH + "/res/audio/level.mp3"));
+    playlist->setPlaybackMode(QMediaPlaylist::Loop);
+
     musicPlayer = new QMediaPlayer;
-    musicPlayer->setMedia(QUrl::fromLocalFile(PATH + "/res/audio/level.mp3"));
+    musicPlayer->setPlaylist(playlist);
     musicPlayer->setVolume(20);
     musicPlayer->play();
 

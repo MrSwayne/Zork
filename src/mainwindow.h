@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QtWidgets>
 #include <QMediaPlayer>
+#include <QMediaPlaylist>
 #include "player.h"
 
 namespace Ui {

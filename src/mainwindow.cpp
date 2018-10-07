@@ -3,6 +3,7 @@
 #include <QtWidgets>
 #include <QCloseEvent>
 #include <iostream>
+#include <QMediaPlaylist>
 #include <QMediaPlayer>
 #include "graphicsview.h"
 #include "zork.h"

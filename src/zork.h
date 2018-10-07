@@ -4,6 +4,9 @@
 #include "mainwindow.h"
 #include "graphicsview.h"
 #include "Room.h"
+#include <QMediaPlayer>
+#include <QMediaPlaylist>
+
 class Zork
 {
 public:
@@ -12,6 +15,7 @@ public:
 
 private:
     MainWindow *window = nullptr;
+    QMediaPlaylist *playlist= nullptr;
     QMediaPlayer *musicPlayer = nullptr;
     Player *player = nullptr;
     QGraphicsScene *scene = nullptr;
