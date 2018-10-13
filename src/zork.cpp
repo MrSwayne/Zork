@@ -8,9 +8,17 @@
 #define PATH QDir::currentPath()
 #define PLAYER_NAME "Jerry"
 
-Zork::Zork(MainWindow *w, QWidget *container) {
-    this->window = w;
+
+Zork::Zork(QWidget *container) {
     setup(container);
+    WIDTH = container->width();
+    HEIGHT = container->height();
+}
+
+void Zork::destroy() {
+    delete musicPlayer;
+    delete playlist;
+    delete layout;
 }
 
 void Zork::run() {
@@ -21,7 +29,14 @@ void Zork::run() {
     }*/
 }
 
-void Zork::setupRooms() {
+void Zork::setupRooms() {    /*
+    std::map<std::string, Menu*>::iterator it = menus.find(menu);
+    if(it != menus.end())
+        setCentralWidget(menus[menu]);
+    else {
+      std::cerr << "No menu of that name could be found.";
+      setCentralWidget(menus[menus.begin()->first]);
+    }*/
     Room *a, *b, *c, *d, *e, *f, *g, *h, *i;
 
     a = new Room("Forest", WIDTH, HEIGHT);
@@ -55,11 +70,8 @@ void Zork::setupRooms() {
 void Zork::setup(QWidget *container) {
     gameOver = false;
 
-    QGridLayout *layout = new QGridLayout();
+    layout = new QGridLayout();
     container->setLayout(layout);
-
-    WIDTH = window->getWidth();
-    HEIGHT = window->getHeight();
 
     playlist=new QMediaPlaylist();
     playlist->addMedia(QUrl::fromLocalFile(PATH + "/res/audio/level.mp3"));

@@ -4,6 +4,7 @@
 #include <qdir.h>
 #include <iostream>
 
+
 #define PATH QDir::currentPath().toStdString()
 
 using namespace std;
@@ -11,20 +12,25 @@ using namespace std;
 Config::Config() {
 }
 
+//https://stackoverflow.com/questions/31103883/reading-key-value-pairs-from-a-file-and-ignoring-comment-lines
 
 void Config::loadConfig() {
+        const string CONF_P = PATH + "/config.properties";
         ifstream configFile;
 
-         configFile.open(PATH + "/config.properties");
+         configFile.open(CONF_P);
 
         if(!configFile) {
-            cerr << "Unable to open " + PATH + "/config.properties";
-            exit(-1);
+            cerr << "Unable to open " << CONF_P << " creating new file now.";
+            ofstream configFile(CONF_P);
+            configFile << "";
         }
 
         string line;
+
+        std::string pairs[2];
         while(std::getline(configFile, line)) {
-            std::cout << line << std::endl;
+
         }
 }
 

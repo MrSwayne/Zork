@@ -38,7 +38,27 @@ SOURCES += \
     src/sprite.cpp \
     src/ZorkUL.cpp \
     src/zork.cpp \
-    src/config.cpp
+    src/config.cpp \
+    src/startmenu.cpp \
+    src/gamemenu.cpp \
+    src/menu.cpp \
+    src/Character.cpp \
+    src/Command.cpp \
+    src/CommandWords.cpp \
+    src/config.cpp \
+    src/graphicsview.cpp \
+    src/inventory.cpp \
+    src/item.cpp \
+    src/main.cpp \
+    src/mainwindow.cpp \
+    src/Parser.cpp \
+    src/person.cpp \
+    src/player.cpp \
+    src/Room.cpp \
+    src/sprite.cpp \
+    src/zork.cpp \
+    src/ZorkUL.cpp \
+    src/ipushcallback.cpp
 
 HEADERS += \
     src/mainwindow.h \
@@ -55,7 +75,26 @@ HEADERS += \
     src/sprite.h \
     src/ZorkUL.h \
     src/zork.h \
-    src/config.h
+    src/config.h \
+    src/startmenu.h \
+    src/gamemenu.h \
+    src/menu.h \
+    src/Character.h \
+    src/Command.h \
+    src/CommandWords.h \
+    src/config.h \
+    src/graphicsview.h \
+    src/inventory.h \
+    src/item.h \
+    src/mainwindow.h \
+    src/Parser.h \
+    src/person.h \
+    src/player.h \
+    src/Room.h \
+    src/sprite.h \
+    src/zork.h \
+    src/ZorkUL.h \
+    src/ipushcallback.h
 
 FORMS += \
     src/mainwindow.ui

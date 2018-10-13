@@ -1,20 +1,21 @@
 #ifndef ZORK_H
 #define ZORK_H
 
-#include "mainwindow.h"
+#include "QMainWindow"
 #include "graphicsview.h"
 #include "Room.h"
 #include <QMediaPlayer>
 #include <QMediaPlaylist>
-
+#include "mainwindow.h"
 class Zork
 {
 public:
-    Zork(MainWindow *w, QWidget *container);
+    Zork(QWidget *container);
     void run();
+    void destroy();
 
 private:
-    MainWindow *window = nullptr;
+    QMainWindow *window = nullptr;
     QMediaPlaylist *playlist= nullptr;
     QMediaPlayer *musicPlayer = nullptr;
     Player *player = nullptr;
@@ -23,6 +24,7 @@ private:
     QGraphicsView *mapView = nullptr;
     QGraphicsView *inventoryView = nullptr;
     Room *crntRoom = nullptr;
+    QGridLayout *layout = nullptr;
     bool gameOver = false;
     int WIDTH;
     int HEIGHT;

@@ -9,6 +9,10 @@
 #include "zork.h"
 #include <string.h>
 #include "player.h"
+#include "menu.h"
+#include "ipushcallback.h"
+#include "startmenu.h"
+#include "gamemenu.h"
 
 #define TITLE "Zork UL"
 #define PATH QDir::currentPath()
@@ -16,7 +20,8 @@
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow) {
+    ui(new Ui::MainWindow)
+{
 
     ui->setupUi(this);
 
@@ -35,94 +40,42 @@ MainWindow::MainWindow(QWidget *parent) :
     init();
 }
 
+void MainWindow::notifyButtonPushed(QPushButton *btn) {
+    std::string str = btn->text().toStdString();
+    setMenu(str);
+}
+
 void MainWindow::init() {
+    Menu *startMenu = new StartMenu("Start", this);
 
-    loadMainMenu();
+    Menu *gameMenu = new GameMenu("Play", this);
+
+    menus[startMenu->getName()] = startMenu;
+    menus[gameMenu->getName()] = gameMenu;
+
+    startMenu->setup();
+    setCentralWidget(startMenu);
+    crntMenu = startMenu->getName();
 }
 
-int MainWindow::getWidth() {
-    return WIDTH;
-}
 
-int MainWindow::getHeight() {
-    return HEIGHT;
-}
 
-void MainWindow::loadMainMenu() {
-    delete container;
-    delete musicPlayer;
-
-    #if MUSIC == 1
-    playlist=new QMediaPlaylist();
-    playlist->addMedia(QUrl::fromLocalFile(PATH + "/res/audio/main.mp3"));
-    playlist->setPlaybackMode(QMediaPlaylist::Loop);
-
-    musicPlayer = new QMediaPlayer;
-    musicPlayer->setPlaylist(playlist);
-    musicPlayer->setVolume(20);
-    musicPlayer->play();
-    #endif
-
-    std::cout << "Loading main menu" << std::endl;
-
-    container = new QWidget(this);
-
-    QGridLayout *layout = new QGridLayout();
-    container->setLayout(layout);
-
-    QPushButton *playButton = new QPushButton("Play",container);
-    connect(playButton, SIGNAL(released()), this, SLOT (handlePlayButton()));
-
-    QPushButton *leaderboardButton = new QPushButton("Leaderboards",container);
-    connect(leaderboardButton, SIGNAL(released()), this, SLOT (handleLeaderboardsButton()));
-
-    QPushButton *settingsButton = new QPushButton("Settings", container);
-    connect(settingsButton, SIGNAL(released()), this, SLOT (handleSettingsButton()));
-
-    QLabel *label = new QLabel(container);
-    QPixmap pixmap(PATH + "/res/images/logo.png");
-    pixmap = pixmap.scaled(QSize(800, 200));
-    label->setPixmap(pixmap);
-    label->setMaximumWidth(pixmap.width());
-    label->setMaximumHeight(pixmap.height());
-
-    layout->setVerticalSpacing(50);
-    layout->setMargin(0);
-    layout->addWidget(label, 0, 0);
-    layout->addWidget(playButton,1,0);
-    layout->addWidget(leaderboardButton,2,0);
-    layout->addWidget(settingsButton,3,0);
-
-    setCentralWidget(container);
-}
-
-//https://stackoverflow.com/questions/17480662/add-an-image-to-certain-position-in-qgraphicsscene
-
-void MainWindow::loadGame() {
-    delete container;
-    delete musicPlayer;
-    delete player;
-    std::cout << "loading game screen" << std::endl;
-
-    container = new QWidget();
-    Zork *game = new Zork(this, container);
-    game->run();
-
-    setCentralWidget(container);
-}
-
-void MainWindow::handlePlayButton() {
-    std::cout << "Play Button pressed"
-                 "" << std::endl;
-    loadGame();
-}
-
-void MainWindow::handleLeaderboardsButton() {
-    std::cout << "Leaderboards button pressed" << std::endl;
-}
-
-void MainWindow::handleSettingsButton() {
-    std::cout << "Settings button pressed" << std::endl;
+void MainWindow::setMenu(const std::string menu) {
+    std::map<std::string, Menu*>::iterator it = menus.find(menu);
+    if(it != menus.end()) {
+        if(crntMenu != menu) {
+            std::cout << "Destroying " << crntMenu << std::endl;
+            menus[crntMenu]->destroy();
+            std::cout << "setting up " << menu << std::endl;
+            menus[menu]->setup();
+            crntMenu = menu;
+        }
+        setCentralWidget(menus[menu]);
+    }
+    else {
+      std::cerr << menu << " could not be found.";
+      setCentralWidget(menus[menus.begin()->first]);
+    }
 }
 
 //If user presses the X button then a dialog opens up prompting them if they really want to quit

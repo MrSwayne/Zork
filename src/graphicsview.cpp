@@ -32,7 +32,7 @@ void GraphicsView::keyReleaseEvent(QKeyEvent *event) {
     this->player->keyRelease(event);
 }
 
-
+//https://stackoverflow.com/questions/17480662/add-an-image-to-certain-position-in-qgraphicsscene
 void GraphicsView::mousePressEvent(QMouseEvent *click) {
     /*
     std::cout << "click" << std::endl;
