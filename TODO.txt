@@ -1,17 +1,19 @@
 /*TODO
 
--> Pathfinding algorithm for sprites
--> animations from spritesheets (partially implemented)
+-> Loot system
+-> Player movement
+-> Pathfinding algorithm for sprites (AI)
 -> randomly generated rooms
 -> ability to examine all objects etc
--> AI
 -> art
 -> leaderboard system
 -> settings
 -> score + health system
 -> combat system
--> inventory (partially implemented)
- 
+
+--PARTIALLY IMPLEMENTED--
+ ->inventory
+ ->animations from spritesheets
 
 
 
