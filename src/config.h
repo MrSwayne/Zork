@@ -10,6 +10,7 @@ public:
     std::string get(std::string k);
 private:
      void loadConfig();
+     void iterate();
      std::map<std::string, std::string> map;
 };
 

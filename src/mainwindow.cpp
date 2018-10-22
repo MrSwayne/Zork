@@ -13,12 +13,13 @@
 #include "ipushcallback.h"
 #include "startmenu.h"
 #include "gamemenu.h"
+#include "config.h"
 
 #define TITLE "Zork UL"
 #define PATH QDir::currentPath()
 #define MUSIC 1
 
-MainWindow::MainWindow(QWidget *parent) :
+MainWindow::MainWindow(Config &cfg, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
@@ -34,7 +35,7 @@ MainWindow::MainWindow(QWidget *parent) :
     this->setMaximumWidth(WIDTH / 2);
     this->setMaximumHeight(HEIGHT / 2);
 
-    //    this->showMaximized();
+    //this->showMaximized();
     this->setWindowTitle(TITLE);
 
     init();
@@ -43,6 +44,12 @@ MainWindow::MainWindow(QWidget *parent) :
 void MainWindow::notifyButtonPushed(QPushButton *btn) {
     std::string str = btn->text().toStdString();
     setMenu(str);
+}
+
+void MainWindow::keyPressEvent(QKeyEvent *event) {
+    if (event->key() == Qt::Key_Escape) {
+        menus[crntMenu]->destroy();
+    }
 }
 
 void MainWindow::init() {
@@ -63,18 +70,20 @@ void MainWindow::init() {
 void MainWindow::setMenu(const std::string menu) {
     std::map<std::string, Menu*>::iterator it = menus.find(menu);
     if(it != menus.end()) {
+
         if(crntMenu != menu) {
             std::cout << "Destroying " << crntMenu << std::endl;
             menus[crntMenu]->destroy();
             std::cout << "setting up " << menu << std::endl;
             menus[menu]->setup();
             crntMenu = menu;
+            setCentralWidget(menus[menu]);
         }
-        setCentralWidget(menus[menu]);
     }
     else {
       std::cerr << menu << " could not be found.";
-      setCentralWidget(menus[menus.begin()->first]);
+      if(menus.size())
+        setMenu(menus.begin()->first);
     }
 }
 
