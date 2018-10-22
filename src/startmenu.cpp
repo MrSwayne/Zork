@@ -37,7 +37,7 @@ void StartMenu::setup() {
     connect(settingsButton, SIGNAL(released()), this, SLOT (handlePushButtons()));
 
     QLabel *label = new QLabel(this);
-    QPixmap pixmap(PATH + "/res/images/logo.png");
+    QPixmap pixmap(PATH + "/res/images/ZorkTitle.png");
     pixmap = pixmap.scaled(QSize(800, 200));
     label->setPixmap(pixmap);
     label->setMaximumWidth(pixmap.width());

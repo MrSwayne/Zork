@@ -13,7 +13,7 @@ void Player::addScore(int n) {
 void Player::keyRelease(QKeyEvent *event) {
     event->key();
 
-    std::cout << "release " << event->key() << std::endl;
+    //std::cout << "release " << event->key() << std::endl;
 
     if (event->key() == Qt::Key_W) {
         xVel = 1;
@@ -29,18 +29,21 @@ void Player::keyRelease(QKeyEvent *event) {
 void Player::keyPress(QKeyEvent *event) {
     event->key();
 
-    std::cout << "press" << event->key() << std::endl;
+    //std::cout << "press" << event->key() << std::endl;
 
-    /*
-    if () {
+         //Rough Movement, to be updated...
+
+    if (event->key() == Qt::Key_A) {
+        setPos(pos().x()-10,pos().y());
     }
-    if (){
+    if (event->key() == Qt::Key_D){
+        setPos(pos().x()+10,pos().y());
     }
-    if () {
+    if (event->key() == Qt::Key_W) {
+        setPos(pos().x(),pos().y()-10);
     }
-    if () ) {
+    if (event->key() == Qt::Key_S){
+        setPos(pos().x(),pos().y()+10);
 
     }
-    */
-
 }
