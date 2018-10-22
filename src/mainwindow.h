@@ -19,7 +19,7 @@ class MainWindow : public QMainWindow, public IPushCallBack {
     Q_OBJECT
 
 public:
-    explicit MainWindow(Config &cfg, QWidget *parent = nullptr);
+    explicit MainWindow(Config *&cfg, QWidget *parent = nullptr);
     void notifyButtonPushed(QPushButton *b);
     ~MainWindow();
 

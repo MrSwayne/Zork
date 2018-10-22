@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
 
     //Generic QT setup
     QApplication a(argc, argv);
-    MainWindow w(*cfg);
+    MainWindow w(cfg);
     w.show();
 
     return a.exec();

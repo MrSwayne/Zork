@@ -56,6 +56,10 @@ void Config::iterate() {
         cout<< it->first << "=>" << it->second << endl;
 }
 
+void Config::set(string k, string v) {
+    map[k] = v;
+}
+
 std::string Config::get(string k) {
     if(!map.empty()) {
         return map[k];

@@ -19,7 +19,7 @@
 #define PATH QDir::currentPath()
 #define MUSIC 1
 
-MainWindow::MainWindow(Config &cfg, QWidget *parent) :
+MainWindow::MainWindow(Config *&cfg, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
@@ -36,7 +36,8 @@ MainWindow::MainWindow(Config &cfg, QWidget *parent) :
     this->setMaximumHeight(HEIGHT / 2);
 
     //this->showMaximized();
-    this->setWindowTitle(TITLE);
+    cout << cfg->get("title") << endl;
+    this->setWindowTitle(QString::fromStdString(cfg->get("title")));
 
     init();
 }
