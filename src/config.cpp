@@ -3,13 +3,22 @@
 #include <string>
 #include <qdir.h>
 #include <iostream>
-
+#include <sstream>
+#include <map>
 
 #define PATH QDir::currentPath().toStdString()
+
+/* DISCLAIMER
+ *
+ * I wasn't allowed to make any globals so this was my workaround sorry Chris
+ *
+ *
+*/
 
 using namespace std;
 
 Config::Config() {
+    loadConfig();
 }
 
 //https://stackoverflow.com/questions/31103883/reading-key-value-pairs-from-a-file-and-ignoring-comment-lines
@@ -27,15 +36,33 @@ void Config::loadConfig() {
         }
 
         string line;
+        while(getline(configFile, line)) {
+            istringstream iss(line);
+            string token, currentKey;
+            int n = 0;
+            while(getline(iss, token, '=')) {
+                  if(!n++)
+                      currentKey = token;
 
-        std::string pairs[2];
-        while(std::getline(configFile, line)) {
-
+                  else
+                      map[currentKey] = token;
+            } n--;
         }
 }
 
-std::string Config::get(std::string k) {
-    if(map.empty()) loadConfig();
+void Config::iterate() {
+    std::cout << "iterating" << std::endl;
+    for(std::map<string, string>::iterator it=map.begin(); it!=map.end();++it)
+        cout<< it->first << "=>" << it->second << endl;
+}
 
-    return map[k];
+void Config::set(string k, string v) {
+    map[k] = v;
+}
+
+std::string Config::get(string k) {
+    if(!map.empty()) {
+        return map[k];
+    } else
+        return "null";
 }

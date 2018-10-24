@@ -15,10 +15,6 @@ private:
     string name;
 public:
 	void addItems(string Item);
-
-
-
-
 public:
     Character(string name, string description, );
 	string shortDescription();

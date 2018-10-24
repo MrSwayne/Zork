@@ -15,12 +15,9 @@ int main(int argc, char *argv[])
     //init config
     Config *cfg = new Config();
 
-    cfg->get("hello!");
-
-
     //Generic QT setup
     QApplication a(argc, argv);
-    MainWindow w;
+    MainWindow w(cfg);
     w.show();
 
     return a.exec();

@@ -9,6 +9,7 @@
 #include <map>
 #include "menu.h"
 #include "ipushcallback.h"
+#include "config.h"
 
 namespace Ui {
 class MainWindow;
@@ -18,7 +19,7 @@ class MainWindow : public QMainWindow, public IPushCallBack {
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = nullptr);
+    explicit MainWindow(Config *&cfg, QWidget *parent = nullptr);
     void notifyButtonPushed(QPushButton *b);
     ~MainWindow();
 
@@ -30,6 +31,7 @@ private:
     Ui::MainWindow *ui;
     std::string crntMenu;
     void closeEvent(QCloseEvent *event);
+    void keyPressEvent(QKeyEvent *event);
     void init();
 };
 

@@ -11,6 +11,7 @@
 
 Zork::Zork(QWidget *container) {
     setup(container);
+    this->container = container;
     WIDTH = container->width();
     HEIGHT = container->height();
 }
@@ -19,6 +20,7 @@ void Zork::destroy() {
     delete musicPlayer;
     delete playlist;
     delete layout;
+    delete player;
 }
 
 void Zork::run() {
@@ -29,14 +31,7 @@ void Zork::run() {
     }*/
 }
 
-void Zork::setupRooms() {    /*
-    std::map<std::string, Menu*>::iterator it = menus.find(menu);
-    if(it != menus.end())
-        setCentralWidget(menus[menu]);
-    else {
-      std::cerr << "No menu of that name could be found.";
-      setCentralWidget(menus[menus.begin()->first]);
-    }*/
+void Zork::setupRooms() {
     Room *a, *b, *c, *d, *e, *f, *g, *h, *i;
 
     a = new Room("Forest", WIDTH, HEIGHT);
@@ -67,7 +62,7 @@ void Zork::setupRooms() {    /*
     crntRoom = a;
 }
 
-void Zork::setup(QWidget *container) {
+void Zork::setup(QWidget* container) {
     gameOver = false;
 
     layout = new QGridLayout();
@@ -89,7 +84,7 @@ void Zork::setup(QWidget *container) {
     scene->setBackgroundBrush(QBrush(QImage(PATH + "/res/images/room.jpg")));
     gameView = new GraphicsView(container, player, scene);
 
-    QLabel *inventoryLabel = new QLabel(window->tr("Inventory"), container);
+    QLabel *inventoryLabel = new QLabel("Inventory", container);
     inventoryLabel->setMaximumHeight(20);
     inventoryLabel->setMaximumWidth(80);
 
@@ -98,7 +93,7 @@ void Zork::setup(QWidget *container) {
     inventoryView->setMaximumHeight(200);
     inventoryView->setMaximumWidth(150);
 
-    QLabel *mapLabel = new QLabel(window->tr("Map"), container);
+    QLabel *mapLabel = new QLabel("Map", container);
     mapLabel->setMaximumHeight(20);
     mapLabel->setMaximumWidth(80);
 

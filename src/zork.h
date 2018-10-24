@@ -15,7 +15,6 @@ public:
     void destroy();
 
 private:
-    QMainWindow *window = nullptr;
     QMediaPlaylist *playlist= nullptr;
     QMediaPlayer *musicPlayer = nullptr;
     Player *player = nullptr;
@@ -26,11 +25,11 @@ private:
     Room *crntRoom = nullptr;
     QGridLayout *layout = nullptr;
     bool gameOver = false;
+    QWidget *container;
     int WIDTH;
     int HEIGHT;
     void setup(QWidget *container);
     void setupRooms();
-
 };
 
 #endif // ZORK_H
