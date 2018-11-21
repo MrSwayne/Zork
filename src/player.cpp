@@ -4,6 +4,8 @@
 
 Player::Player(QString path, QString name, QString desc, int spawnX, int spawnY) : Person(path, name, desc, spawnX, spawnY) {
     score = 0;
+    this->setFlag(QGraphicsItem::ItemIsFocusable);
+    this->setFocus();
 }
 
 void Player::addScore(int n) {
@@ -13,10 +15,9 @@ void Player::addScore(int n) {
 void Player::keyRelease(QKeyEvent *event) {
     event->key();
 
-    //std::cout << "release " << event->key() << std::endl;
+    std::cout << "release " << event->key() << std::endl;
 
     if (event->key() == Qt::Key_W) {
-        xVel = 1;
     }
     if (event->key() == Qt::Key_A){
     }
@@ -26,10 +27,14 @@ void Player::keyRelease(QKeyEvent *event) {
     }
 }
 
+int Player::getScore() {
+    return this->score;
+}
+
 void Player::keyPress(QKeyEvent *event) {
     event->key();
 
-    //std::cout << "press" << event->key() << std::endl;
+    std::cout << "press" << event->key() << std::endl;
 
          //Rough Movement, to be updated...
 

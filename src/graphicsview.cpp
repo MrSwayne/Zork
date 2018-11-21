@@ -14,7 +14,7 @@ GraphicsView::GraphicsView(QWidget *parent, Player *player, QGraphicsScene *scen
 
     if(player != nullptr) {
         this->player = player;
-        scene->addItem(player);
+        //scene->addItem(player);
     }
 }
 

@@ -9,7 +9,9 @@
 #define PLAYER_NAME "Jerry"
 
 
-Zork::Zork(QWidget *container) {
+Zork::Zork(QApplication *app, QWidget *container) {
+    this->app = app;
+    gameState = PLAY;
     setup(container);
     this->container = container;
     WIDTH = container->width();
@@ -23,12 +25,28 @@ void Zork::destroy() {
     delete player;
 }
 
+#include <iostream>
 void Zork::run() {
     setupRooms();
-    /*
-    while(!gameOver) {
-        //view->setScene
-    }*/
+
+
+    clock_t crntTime = clock();
+    clock_t last_time = crntTime;
+
+
+   crntRoom->draw(player, scene);
+
+     while(gameState == PLAY) {
+        this->app->processEvents();
+       // crntRoom->draw(player, scene);
+        if(player->isDead())    gameState = END;
+
+        crntRoom->destroy();
+    }
+
+     int score = player->getScore();
+     //crntRoom->destroy();
+
 }
 
 void Zork::setupRooms() {
@@ -81,7 +99,6 @@ void Zork::setup(QWidget* container) {
 
     scene = new QGraphicsScene(0,0,WIDTH,HEIGHT);
     scene->setSceneRect(0,0,1,1);
-    scene->setBackgroundBrush(QBrush(QImage(PATH + "/res/images/room.jpg")));
     gameView = new GraphicsView(container, player, scene);
 
     QLabel *inventoryLabel = new QLabel("Inventory", container);

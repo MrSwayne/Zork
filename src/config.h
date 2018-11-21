@@ -6,11 +6,11 @@
 class Config
 {
 public:
-    Config();
+    static Config& getInstance();
     std::string get(std::string k);
     void set(std::string k, std::string v);
 private:
-     void loadConfig();
+     Config();
      void iterate();
      std::map<std::string, std::string> map;
 };

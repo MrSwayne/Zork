@@ -57,7 +57,8 @@ SOURCES += \
     src/Room.cpp \
     src/sprite.cpp \
     src/zork.cpp \
-    src/ZorkUL.cpp
+    src/ZorkUL.cpp \
+    src/door.cpp
 
 HEADERS += \
     src/mainwindow.h \
@@ -94,7 +95,8 @@ HEADERS += \
     src/zork.h \
     src/ZorkUL.h \
     src/ipushcallback.h \
-    src/direction.h
+    src/direction.h \
+    src/door.h
 
 FORMS += \
     src/mainwindow.ui

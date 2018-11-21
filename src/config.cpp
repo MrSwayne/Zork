@@ -18,37 +18,42 @@
 using namespace std;
 
 Config::Config() {
-    loadConfig();
+    const string CONF_P = PATH + "/config.properties";
+    ifstream configFile;
+
+     configFile.open(CONF_P);
+
+    if(!configFile) {
+        cerr << "Unable to open " << CONF_P << " creating new file now.";
+        ofstream configFile(CONF_P);
+        configFile << "";
+    }
+
+    string line;
+    while(getline(configFile, line)) {
+        istringstream iss(line);
+        string token, currentKey;
+        int n = 0;
+        while(getline(iss, token, '=')) {
+              if(!n++)
+                  currentKey = token;
+
+              else
+                  map[currentKey] = token;
+        } n--;
+    }
+
+    map["path"] = PATH;
 }
+
+Config& Config::getInstance() {
+    static Config cfg;
+    return cfg;
+}
+
 
 //https://stackoverflow.com/questions/31103883/reading-key-value-pairs-from-a-file-and-ignoring-comment-lines
 
-void Config::loadConfig() {
-        const string CONF_P = PATH + "/config.properties";
-        ifstream configFile;
-
-         configFile.open(CONF_P);
-
-        if(!configFile) {
-            cerr << "Unable to open " << CONF_P << " creating new file now.";
-            ofstream configFile(CONF_P);
-            configFile << "";
-        }
-
-        string line;
-        while(getline(configFile, line)) {
-            istringstream iss(line);
-            string token, currentKey;
-            int n = 0;
-            while(getline(iss, token, '=')) {
-                  if(!n++)
-                      currentKey = token;
-
-                  else
-                      map[currentKey] = token;
-            } n--;
-        }
-}
 
 void Config::iterate() {
     std::cout << "iterating" << std::endl;

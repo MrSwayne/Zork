@@ -1,13 +1,13 @@
 #include "gamemenu.h"
 #include "zork.h"
 #include "mainwindow.h"
-GameMenu::GameMenu(std::string name, IPushCallBack *ipcb) : Menu(name, ipcb)
+GameMenu::GameMenu(std::string name, QApplication *app, IPushCallBack *ipcb) : Menu(name, ipcb)
 {
-
+    this->app = app;
 }
 
 void GameMenu::setup() {
-    game = new Zork(this);
+    game = new Zork(app, this);
     game->run();
 }
 

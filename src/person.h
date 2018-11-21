@@ -11,6 +11,8 @@ public:
     Person(QString path, QString name,QString desc,int spawnX, int spawnY);
     void setDirection(std::string dir);
     void move(QPointF p);
+    bool isDead();
+    void hit(int n);
 private:
     QImage *spriteSheet;
     std::unordered_map<std::string, QPixmap> pixmaps;

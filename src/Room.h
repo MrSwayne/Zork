@@ -8,6 +8,9 @@
 #include <vector>
 #include "item.h"
 #include "QGraphicsScene"
+#include "person.h"
+#include "player.h"
+#include "door.h"
 
 using namespace std;
 using std::vector;
@@ -18,7 +21,13 @@ private:
 	string description;
 	map<string, Room*> exits;
 	string exitString();
-    vector <Item> itemsInRoom;
+    vector <Item*> itemsInRoom;
+    vector <Person*> enemiesInRoom;
+    vector <Door*> doorsInRoom;
+
+    Player *player;
+    QGraphicsScene *scene;
+    void Room::createRoom();
 
 
 public:
@@ -30,10 +39,12 @@ public:
 	Room* nextRoom(string direction);
     void addItem(Item *inItem);
     string displayItem();
+    void draw(Player *player, QGraphicsScene *scene);
     int WIDTH;
     int HEIGHT;
     int isItemInRoom(string inString);
     void removeItemFromRoom(int location);
+    void destroy();
 };
 
 #endif

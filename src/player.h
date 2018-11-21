@@ -12,6 +12,7 @@ public:
     void addScore(int n);
     void keyRelease(QKeyEvent *event);
     void keyPress(QKeyEvent *event);
+    int getScore();
 
 private:
     int score;

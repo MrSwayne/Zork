@@ -15,6 +15,15 @@ Person::Person(QString path, QString name, QString desc, int spawnX, int spawnY)
     this->setPixmap(map);
 
     this->name = name;
+    this->health = 100;
+}
+
+bool Person::isDead() {
+    return this->health <= 0? true: false;
+}
+
+void Person::hit(int n) {
+    health -= n;
 }
 
 

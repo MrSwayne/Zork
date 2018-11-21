@@ -19,11 +19,12 @@ class MainWindow : public QMainWindow, public IPushCallBack {
     Q_OBJECT
 
 public:
-    explicit MainWindow(Config *&cfg, QWidget *parent = nullptr);
+    explicit MainWindow(Config &cfg, QApplication* app, QWidget *parent = nullptr);
     void notifyButtonPushed(QPushButton *b);
     ~MainWindow();
 
 private:
+    QApplication *app;
     void setMenu(std::string menu);
     std::map<std::string, Menu*> menus;
     int HEIGHT;

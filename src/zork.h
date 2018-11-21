@@ -10,11 +10,13 @@
 class Zork
 {
 public:
-    Zork(QWidget *container);
+    Zork(QApplication *app, QWidget *container);
     void run();
     void destroy();
+    void pause();
 
 private:
+    QApplication *app = nullptr;
     QMediaPlaylist *playlist= nullptr;
     QMediaPlayer *musicPlayer = nullptr;
     Player *player = nullptr;
@@ -30,6 +32,8 @@ private:
     int HEIGHT;
     void setup(QWidget *container);
     void setupRooms();
+    enum eState {PLAY = 0, PAUSE, END};
+    eState gameState = PLAY;
 };
 
 #endif // ZORK_H

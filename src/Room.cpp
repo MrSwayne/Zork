@@ -1,13 +1,43 @@
-
-
 #include "Room.h"
 #include "Command.h"
-
+#include "player.h"
+#include <random>
+#include <iostream>
+//#include "enemy.h"
+#include "item.h"
+#include <string>
+#include "door.h"
+#include "config.h"
 
 Room::Room(string description, int width, int height) {
 	this->description = description;
     this->WIDTH = width;
     this->HEIGHT = height;
+    createRoom();
+}
+
+//Courtesy of https://stackoverflow.com/questions/7560114/random-number-c-in-some-range
+
+void Room::createRoom() {
+    std::random_device rd; //Obtain random num from hardware
+    std::mt19937 eng(rd()); //Seeds the generator
+    std::uniform_int_distribution<> widthDistr(0, WIDTH);   //range
+    std::uniform_int_distribution<> heightDistr(0, HEIGHT);
+
+    std::uniform_int_distribution<> enemiesDistr(0, 5);
+    int numEnemies = enemiesDistr(eng);
+
+    std::uniform_int_distribution<> itemsDistr(0, 3);
+    int numItems = itemsDistr(eng);
+
+    Config cfg = Config::getInstance();
+
+    for(int i = 0;i < numItems;i++) {
+       QString path = QString::fromStdString(cfg.get("path") + "/res/images/sprites/sword.png");
+       Item *item = new Item(path, QString("Item"), QString("an item"), 10, 10, 10);
+       itemsInRoom.push_back(item);
+      // QString path, QString name, QString desc, int weight,int spawnX, int spawnY
+    }
 }
 
 void Room::setExits(Room *north, Room *east, Room *south, Room *west) {
@@ -19,6 +49,64 @@ void Room::setExits(Room *north, Room *east, Room *south, Room *west) {
 		exits["south"] = south;
 	if (west != NULL)
 		exits["west"] = west;
+}
+
+void Room::destroy() {
+    vector <Item*> itemsInRoom;
+
+    for(Person *enemy: this->enemiesInRoom) {
+        this->scene->removeItem(enemy);
+        delete enemy;
+    }
+
+    for(Item *item: this->itemsInRoom) {
+        this->scene->removeItem(item);
+        delete item;
+    }
+
+    for(Door *door: this->doorsInRoom) {
+        this->scene->removeItem(door);
+        delete door;
+    }
+
+    this->scene->removeItem(player);
+
+    this->enemiesInRoom.clear();
+    this->itemsInRoom.clear();
+    this->doorsInRoom.clear();
+}
+
+#include "config.h"
+
+void Room::draw(Player *player, QGraphicsScene *scene) {
+    scene->clear();
+    this->player = player;
+    this->scene = scene;
+   // player->setPos(0, 0);
+
+    Config cfg = Config::getInstance();
+
+    scene->setBackgroundBrush(QBrush(QImage(QString::fromStdString(cfg.get("path") + "/res/images/room.jpg"))));
+
+
+    std::string rooms[4] = {"north", "south", "east", "west"};
+    for(int i = 0;i < 4;i++) {
+        if(exits[rooms[i]] != NULL ) {
+           // Door* door = new Door(rooms[i]);
+        }
+    }
+
+    for(Person *enemy: this->enemiesInRoom) {
+        scene->addItem(enemy);
+        enemy->draw();
+    }
+
+    for(Item *item: this->itemsInRoom) {
+        scene->addItem(item);
+        item->draw();
+    }
+
+    scene->addItem(player);
 }
 
 /*

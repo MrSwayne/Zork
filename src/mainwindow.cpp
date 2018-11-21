@@ -19,10 +19,13 @@
 #define PATH QDir::currentPath()
 #define MUSIC 1
 
-MainWindow::MainWindow(Config *&cfg, QWidget *parent) :
+MainWindow::MainWindow(Config &cfg, QApplication *app, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
+    this->app = app;
+
+    //std::cout << PATH.toStdString() << std::endl;
 
     ui->setupUi(this);
 
@@ -36,8 +39,8 @@ MainWindow::MainWindow(Config *&cfg, QWidget *parent) :
     this->setMaximumHeight(HEIGHT / 2);
 
     //this->showMaximized();
-    cout << cfg->get("title") << endl;
-    this->setWindowTitle(QString::fromStdString(cfg->get("title")));
+    cout << cfg.get("title") << endl;
+    this->setWindowTitle(QString::fromStdString(cfg.get("title")));
 
     init();
 }
@@ -56,7 +59,7 @@ void MainWindow::keyPressEvent(QKeyEvent *event) {
 void MainWindow::init() {
     Menu *startMenu = new StartMenu("Start", this);
 
-    Menu *gameMenu = new GameMenu("Play", this);
+    Menu *gameMenu = new GameMenu("Play", app, this);
 
     menus[startMenu->getName()] = startMenu;
     menus[gameMenu->getName()] = gameMenu;
