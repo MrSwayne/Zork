@@ -26,23 +26,24 @@ void Zork::destroy() {
 }
 
 #include <iostream>
+#include <windows.h>
+
 void Zork::run() {
     setupRooms();
 
-
-    clock_t crntTime = clock();
-    clock_t last_time = crntTime;
-
-
-   crntRoom->draw(player, scene);
+   crntRoom->draw();
 
      while(gameState == PLAY) {
-        this->app->processEvents();
-       // crntRoom->draw(player, scene);
+        app->processEvents();
+
+         crntRoom->draw();
+
         if(player->isDead())    gameState = END;
 
-        crntRoom->destroy();
+        //crntRoom->destroy();
     }
+
+     std::cout << "GAME OVER" << std::endl;
 
      int score = player->getScore();
      //crntRoom->destroy();
@@ -52,22 +53,25 @@ void Zork::run() {
 void Zork::setupRooms() {
     Room *a, *b, *c, *d, *e, *f, *g, *h, *i;
 
-    a = new Room("Forest", WIDTH, HEIGHT);
+    a = new Room(player, scene, "Forest", WIDTH, HEIGHT);
         //a->addItem(new Item("x", 1, 11));
         //a->addItem(new Item("y", 2, 22));
-    b = new Room("b", WIDTH, HEIGHT);
+
+    b = new Room(player, scene, "b", WIDTH, HEIGHT);
         //b->addItem(new Item("xx", 3, 33));
         //b->addItem(new Item("yy", 4, 44));
-    c = new Room("c", WIDTH, HEIGHT);
-    d = new Room("d", WIDTH, HEIGHT);
-    e = new Room("e", WIDTH, HEIGHT);
-    f = new Room("f", WIDTH, HEIGHT);
-    g = new Room("g", WIDTH, HEIGHT);
-    h = new Room("h", WIDTH, HEIGHT);
-    i = new Room("i", WIDTH, HEIGHT);
+    c = new Room(player, scene, "c", WIDTH, HEIGHT);
+    d = new Room(player, scene, "d", WIDTH, HEIGHT);
+    e = new Room(player, scene, "e", WIDTH, HEIGHT);
+    f = new Room(player, scene, "f", WIDTH, HEIGHT);
+    g = new Room(player, scene, "g", WIDTH, HEIGHT);
+    h = new Room(
+                player, scene, "h", WIDTH, HEIGHT);
+    i = new Room(player, scene, "i", WIDTH, HEIGHT);
 
 //             (N, E, S, W)
     a->setExits(f, b, d, c);
+    /*
     b->setExits(NULL, NULL, NULL, a);
     c->setExits(NULL, a, NULL, NULL);
     d->setExits(a, e, NULL, i);
@@ -76,6 +80,7 @@ void Zork::setupRooms() {
     g->setExits(NULL, NULL, NULL, f);
     h->setExits(NULL, f, NULL, NULL);
     i->setExits(NULL, d, NULL, NULL);
+    */
 
     crntRoom = a;
 }

@@ -9,7 +9,9 @@
 #include "door.h"
 #include "config.h"
 
-Room::Room(string description, int width, int height) {
+Room::Room(Player *player, QGraphicsScene *scene, string description, int width, int height) {
+    this->player = player;
+    this->scene = scene;
 	this->description = description;
     this->WIDTH = width;
     this->HEIGHT = height;
@@ -33,7 +35,7 @@ void Room::createRoom() {
     Config cfg = Config::getInstance();
 
     for(int i = 0;i < numItems;i++) {
-       QString path = QString::fromStdString(cfg.get("path") + "/res/images/sprites/sword.png");
+       QString path = QString::fromStdString(cfg.get("path") + "/res/images/sprites/item.jpg");
        Item *item = new Item(path, QString("Item"), QString("an item"), 10, 10, 10);
        itemsInRoom.push_back(item);
       // QString path, QString name, QString desc, int weight,int spawnX, int spawnY
@@ -78,12 +80,7 @@ void Room::destroy() {
 
 #include "config.h"
 
-void Room::draw(Player *player, QGraphicsScene *scene) {
-    scene->clear();
-    this->player = player;
-    this->scene = scene;
-   // player->setPos(0, 0);
-
+void Room::draw() {
     Config cfg = Config::getInstance();
 
     scene->setBackgroundBrush(QBrush(QImage(QString::fromStdString(cfg.get("path") + "/res/images/room.jpg"))));
@@ -92,7 +89,9 @@ void Room::draw(Player *player, QGraphicsScene *scene) {
     std::string rooms[4] = {"north", "south", "east", "west"};
     for(int i = 0;i < 4;i++) {
         if(exits[rooms[i]] != NULL ) {
-           // Door* door = new Door(rooms[i]);
+            Door* door = new Door(rooms[i]);
+            scene->addItem(door);
+            door->draw();
         }
     }
 

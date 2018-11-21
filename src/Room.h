@@ -32,14 +32,14 @@ private:
 
 public:
     int numberOfItems();
-    Room(string description, int WIDTH, int HEIGHT);
+    Room(Player *player, QGraphicsScene *scene, string description, int WIDTH, int HEIGHT);
 	void setExits(Room *north, Room *east, Room *south, Room *west);
 	string shortDescription();
 	string longDescription();
 	Room* nextRoom(string direction);
     void addItem(Item *inItem);
     string displayItem();
-    void draw(Player *player, QGraphicsScene *scene);
+    void draw();
     int WIDTH;
     int HEIGHT;
     int isItemInRoom(string inString);

@@ -1,10 +1,11 @@
-#include "Room.h"
-
+#include "door.h"
 #include <iostream>
-#include <string>
 
-Door::Door(std::string direction) : Sprite(QString("test"), QString("I wonder what's inside?"), 0, 0 ) {
-    int x = 0, y = 0;
+Door::Door(std::string direction) : Sprite(QString("Test"), QString("I wonder what's inside?"), 0, 0)
+{
+    this->direction = direction;
+}
 
-    std::cout<< direction << std::endl;
+void Door::draw() {
+
 }
