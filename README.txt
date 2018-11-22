@@ -1,0 +1,1 @@
+set working directory to c:/user/...../ZorkFinal2 (the name of the current folder) in order for the program to work!
